@@ -1,0 +1,25 @@
+.ant-menu {
+    color: var(--app-layout-text-color) !important;
+
+    .ant-menu-item {
+        span {
+            color: var(--app-layout-text-color) !important;
+        }
+    }
+
+    .ant-menu-item-selected {
+        background-color: var(--app-content-color) !important;
+    }
+
+    .ant-menu-submenu {
+        span {
+            color: var(--app-layout-text-color) !important;
+        }
+
+        i {
+            color: var(--app-layout-text-color) !important;
+        }
+    }
+
+
+}

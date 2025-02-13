@@ -1,0 +1,27 @@
+.ant-table {
+    color: var(--layout-text-color) !important;
+
+    .ant-table-container {
+        background-color: var(--app-content-color);
+
+        .ant-table-content {
+            table {
+                tr {
+                    .ant-table-cell-row-hover {
+                        background: none !important;
+                    }
+
+                    td {
+                        color: var(--layout-text-color) !important;
+                        background-color: var(--app-content-color);
+                    }
+
+                    th {
+                        color: var(--layout-text-color) !important;
+                        background-color: var(--app-content-color);
+                    }
+                }
+            }
+        }
+    }
+}

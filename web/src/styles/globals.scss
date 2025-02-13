@@ -1,0 +1,28 @@
+@use '_tables' as *;
+@use '_buttons' as *;
+@use '_form' as *;
+@use '_menu' as *;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: var(--app-layout-color);
+  --foreground: #171717;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+html {
+  font-size: 16px;
+}
+
+body {
+  color: var(--app-layout-text-color);
+  font-family: Arial, Helvetica, sans-serif;
+}

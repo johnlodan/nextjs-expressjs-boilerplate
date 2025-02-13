@@ -1,0 +1,41 @@
+@use 'colors' as *;
+
+html[data-theme="dark"] {
+
+    --app-layout-color: #{$dark-100};
+    --app-header-color: #{$dark-500};
+    --app-sider-color: #{$dark-400};
+    --app-content-color: #{$dark-700};
+
+    --app-header-border-color: #{$gray};
+    --app-sider-border-color: #{$gray};
+
+    --app-layout-text-color: #{$white};
+    --app-button-border-color: #{$light-gray};
+}
+
+html[data-theme="light"] {
+    --app-layout-color: #{$white-100};
+    --app-header-color: #{$white-100};
+    --app-sider-color: #{$white};
+    --app-content-color: #{$white-300};
+
+    --app-header-border-color: #{$light-gray};
+    --app-sider-border-color: #{$light-gray};
+
+    --app-layout-text-color: #{$dark};
+    --app-button-border-color: #{$dark};
+}
+
+html[data-theme="green"] {
+    --app-layout-color: #{$dark-800};
+    --app-header-color: #{$dark-800};
+    --app-sider-color: #{$dark-700};
+    --app-content-color: #{$dark-800};
+
+    --app-header-border-color: #{$lime};
+    --app-sider-border-color: #{$lime};
+
+    --app-layout-text-color: #{$lime};
+    --app-button-border-color: #{$lime};
+}

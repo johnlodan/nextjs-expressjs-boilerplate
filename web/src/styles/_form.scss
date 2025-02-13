@@ -1,0 +1,9 @@
+.ant-form {
+    color: var(--app-layout-text-color) !important;
+
+    .ant-form-item {
+        label {
+            color: var(--app-layout-text-color) !important;
+        }
+    }
+}
