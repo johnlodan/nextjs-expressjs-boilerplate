@@ -5,7 +5,7 @@
   "scripts": {
     "tsc": "tsc",
     "start": "env-cmd -f ./.env nodemon ./bin/www.ts",
-    "prod": "env-cmd -f ./.env nodemon ./bin/www --exitcrash",
+    "faker": "env-cmd -f ./.env nodemon ./faker/index.ts",
     "lint": "eslint"
   },
   "dependencies": {
