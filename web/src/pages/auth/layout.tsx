@@ -4,7 +4,7 @@ import HeaderComponent from "../../components/shared/header";
 import SiderComponent from "../../components/shared/sider";
 import Router from 'next/router'
 import NProgress from 'nprogress';
-import styles from './index.module.scss'
+import styles from './layout.module.scss'
 import { AppContext } from '../../lib/context';
 import { Layout } from 'antd';
 import '@ant-design/v5-patch-for-react-19';

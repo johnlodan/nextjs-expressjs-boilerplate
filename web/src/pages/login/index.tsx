@@ -1,24 +1,15 @@
 import { usePostLoginMutation } from '@/services/login'
+import { ILoginData, ILoginErrorMessage } from '@/types/login';
 import { Layout, Card, Form, Input, Button, notification } from 'antd'
 import Cookies from 'js-cookie';
 
-interface IData {
-    email: string;
-    password: string;
-}
-
-interface IErrorMessage {
-    data: {
-        message: string;
-    }
-}
 
 const LoginPage = () => {
     const [postLogin, { isLoading, isSuccess, data }] = usePostLoginMutation()
 
-    async function handleSubmit(data: IData) {
+    async function handleSubmit(data: ILoginData) {
         const response: any = await postLogin({ ...data })
-        const { error }: { error: IErrorMessage } = response
+        const { error }: { error: ILoginErrorMessage } = response
         if (error) notification.warning({ message: 'Invalid', description: error.data?.message })
     }
 
@@ -37,7 +28,7 @@ const LoginPage = () => {
                     <Form
                         name='login'
                         labelCol={{ span: 6 }}
-                        onFinish={(data: IData) => handleSubmit(data)}
+                        onFinish={(data: ILoginData) => handleSubmit(data)}
                     >
                         <Form.Item
                             name='email'

@@ -1,12 +1,11 @@
 
 import React, { useState } from 'react';
-import type { RadioChangeEvent } from 'antd';
-import { Radio, Dropdown } from 'antd';
-import type { CheckboxGroupProps } from 'antd/es/checkbox';
-import { UserOutlined, ApiOutlined } from '@ant-design/icons';
-import type { MenuProps } from 'antd';
-import { usePostLogoutMutation } from '@/services/login';
 import Cookies from 'js-cookie';
+import type { CheckboxGroupProps } from 'antd/es/checkbox';
+import type { MenuProps, RadioChangeEvent } from 'antd';
+import { Radio, Dropdown } from 'antd';
+import { UserOutlined, ApiOutlined } from '@ant-design/icons';
+import { usePostLogoutMutation } from '@/services/login';
 
 const themeOptions: CheckboxGroupProps<string>['options'] = ['Light', 'Dark', 'Green'];
 
@@ -25,7 +24,7 @@ const HeaderComponent = () => {
         console.log('click', e);
         if (e.key === 'logout') {
             await postLogout("")
-            Cookies.remove(process.env.TOKEN_NAME)
+            Cookies.remove(process.env.TOKEN_NAME!)
             window.location.href = '/login'
         }
     };
