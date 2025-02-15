@@ -67,7 +67,7 @@ const UserController = {
     }
   },
 
-  checkSession: async (req: any, res: any) => {
+  check: async (req: any, res: any) => {
     try {
       const token = req.body.token
       try {
@@ -79,7 +79,7 @@ const UserController = {
               res.status(403).send({ message: err })
             } else res.status(200).send({ message: 'Valid Token' })
           });
-        } else res.status(403).send({ message: { message: 'Session Expired, Please log in' } })
+        } else res.status(403).send({ message: 'Session Expired, Please log in' })
       } catch (e) {
         console.error(e)
         res.status(500).send({ message: 'Invalid Token' })

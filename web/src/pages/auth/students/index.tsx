@@ -4,15 +4,16 @@ import { getRunningQueriesThunk, getStudents, useDeleteStudentMutation, useGetSt
 import { wrapper } from "../../../lib/store";
 import { Button, Table, Pagination } from "antd";
 import { useRouter } from 'next/router';
-import { useSearchParams } from 'next/navigation'
 import './index.module.scss'
 
-function StudentsPage() {
+interface IProps {
+    data: any
+}
+
+function StudentsPage(props: IProps) {
     const router = useRouter();
-    const searchParams = useSearchParams()
-    const query = { page: searchParams.get('page'), limit: searchParams.get('limit') }
     const [deleteStudent] = useDeleteStudentMutation();
-    const result = useGetStudentsQuery(query, { skip: router.isFallback, });
+
     function handleChangePagination(page: number, limit: number) {
         const query = queryString.stringify({ page, limit })
         router.replace(`students?${query}`);
@@ -30,7 +31,7 @@ function StudentsPage() {
         deleteStudent(id)
     }
 
-    const { data } = result;
+    const data = props.data;
     const columns = [
         {
             title: 'First Name',
@@ -79,10 +80,8 @@ function StudentsPage() {
 export const getServerSideProps = wrapper.getServerSideProps(
     (store) => async ({ query }) => {
         store.dispatch(getStudents.initiate(query));
-        await Promise.all(store.dispatch(getRunningQueriesThunk()));
-        return {
-            props: {},
-        };
+        const response = await Promise.all(store.dispatch(getRunningQueriesThunk()));
+        return { props: response?.[0] };
     }
 );
 

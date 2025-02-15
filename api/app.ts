@@ -22,14 +22,8 @@ const loginValidation = [
 InitiateMongoServer()
 
 var app = express()
-app.use(bodyParser.json({ limit: '35mb' }));
-
 app.use(
-  bodyParser.urlencoded({
-    extended: true,
-    limit: '35mb',
-    parameterLimit: 50000,
-  }),
+  bodyParser.urlencoded({ extended: true }),
 );
 
 app.use(cors())
@@ -47,7 +41,7 @@ app.use('/', IndexController)
 // OPEN API
 // Login
 app.post('/login', loginValidation, UserController.login)
-app.post('/check-session', UserController.checkSession)
+app.post('/check', UserController.check)
 
 // SECURED API
 app.get('/students', auth, StudentsController.find)

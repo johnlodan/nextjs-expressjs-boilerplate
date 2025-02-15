@@ -1,6 +1,8 @@
 
 import mongoose from 'mongoose'
 
+mongoose.set('strictQuery', true);
+
 const InitiateMongoServer = async () => {
   try {
     let MONGOURI = ""

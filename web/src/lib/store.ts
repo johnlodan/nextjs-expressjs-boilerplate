@@ -1,6 +1,6 @@
 
 
-import { combineReducers, configureStore } from '@reduxjs/toolkit'
+import { combineReducers, configureStore, Middleware, MiddlewareAPI, isRejected } from '@reduxjs/toolkit'
 import { createWrapper } from 'next-redux-wrapper'
 import { login } from '../services/login'
 import { students } from '../services/students'
@@ -23,11 +23,26 @@ export const makeStore = (context?: any) => {
             cookies: context?.req?.cookies
           },
         },
-      }).concat(login.middleware)
-        .concat(students.middleware)
-        .concat(teachers.middleware),
+      }).concat([
+        login.middleware,
+        students.middleware,
+        teachers.middleware,
+        rtkQueryErrorLogger
+      ])
   })
 }
+
+export const rtkQueryErrorLogger: Middleware =
+  (api: MiddlewareAPI) => (next) => (action: any) => {
+    // isRejectedWithValue Or isRejected
+    if (isRejected(action)) {
+      if (typeof window !== "undefined") {
+        window.location.href = `/redirect?message=${btoa(action.payload?.data?.message)}&status=${btoa(action.payload?.status)}`
+      }
+    }
+    return next(action);
+  };
+
 
 export type AppStore = ReturnType<typeof makeStore>
 export type RootState = ReturnType<AppStore['getState']>
