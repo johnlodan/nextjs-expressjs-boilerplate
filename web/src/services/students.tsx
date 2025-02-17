@@ -32,7 +32,7 @@ export const students = createApi({
     endpoints: (builder) => ({
         getStudents: builder.query({
             query: (query) => ({
-                url: `students?${sortQuery(query)}`,
+                url: `student?${sortQuery(query)}`,
                 method: 'GET',
             }),
             providesTags: ['students'],

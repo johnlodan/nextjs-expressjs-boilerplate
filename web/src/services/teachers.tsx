@@ -32,7 +32,7 @@ export const teachers = createApi({
     },
     endpoints: (builder) => ({
         getTeachers: builder.query({
-            query: (query) => `teachers?${sortQuery(query)}`,
+            query: (query) => `teacher?${sortQuery(query)}`,
             providesTags: ['teachers'],
         }),
         getTeacher: builder.query({
