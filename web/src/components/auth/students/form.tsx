@@ -14,7 +14,7 @@ const StudentForm = (props: IStudentsProps) => {
     }, [props?.data, form])
 
     return (
-        <Form name={props.name} form={form} onFinish={(e) => props.onFinish(e)}  >
+        <Form name={props.name} form={form} onFinish={(e) => props.onFinish(e)} labelCol={{ span: 5 }}  >
             <Row gutter={12} style={{ width: '100%' }}>
                 <Col md={12} lg={8} sm={24} xs={24}>
                     <h1 className='text-left bold py-3 px-2'>{props?.action?.toUpperCase()} INFORMATION</h1>

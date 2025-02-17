@@ -3,7 +3,6 @@ import { ILoginData, ILoginErrorMessage } from '@/types/login';
 import { Layout, Card, Form, Input, Button, notification } from 'antd'
 import Cookies from 'js-cookie';
 
-
 const LoginPage = () => {
     const [postLogin, { isLoading, isSuccess, data }] = usePostLoginMutation()
 
@@ -14,7 +13,8 @@ const LoginPage = () => {
     }
 
     if (isSuccess) {
-        Cookies.set(process.env.TOKEN_NAME!, data.token)
+        const token: string = data.token
+        Cookies.set(process.env.TOKEN_NAME!, token)
         window.location.href = '/auth'
     }
 

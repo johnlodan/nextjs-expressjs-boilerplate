@@ -30,5 +30,6 @@
         min-height: 120px;
         background-color: var(--app-content-color);
         color: var(--app-layout-text-color);
+        overflow-y: scroll;
     }
 }

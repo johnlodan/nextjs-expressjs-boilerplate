@@ -6,6 +6,7 @@ import { useRouter } from 'next/router';
 import { useSearchParams } from 'next/navigation'
 import queryString from 'query-string';
 import './index.module.scss'
+
 function TeachersPage() {
     const router = useRouter();
     const searchParams = useSearchParams()
