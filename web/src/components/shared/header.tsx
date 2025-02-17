@@ -6,12 +6,15 @@ import type { MenuProps, RadioChangeEvent } from 'antd';
 import { Radio, Dropdown } from 'antd';
 import { UserOutlined, ApiOutlined } from '@ant-design/icons';
 import { usePostLogoutMutation } from '@/services/login';
+import { useGetCurrentUserQuery } from '@/services/users';
 
 const themeOptions: CheckboxGroupProps<string>['options'] = ['Light', 'Dark', 'Green'];
 
 const HeaderComponent = () => {
     const [postLogout] = usePostLogoutMutation()
     const [theme, setTheme] = useState('Light');
+    const result = useGetCurrentUserQuery({ skip: false })
+
     const handleThemeChange = ({ target: { value } }: RadioChangeEvent) => {
         setTheme(value);
         document.documentElement.setAttribute(
@@ -47,6 +50,8 @@ const HeaderComponent = () => {
         onClick: handleMenuClick,
     };
 
+    const { data } = result
+
     return (
         <div className="flex flex-row justify-between items-center h-full px-2">
             <div className="flex flex-row justify-center items-center">
@@ -55,7 +60,7 @@ const HeaderComponent = () => {
             </div>
             <div>
                 <Dropdown.Button menu={menuProps} placement="bottomRight" icon={<UserOutlined />}>
-                    Account
+                    {data?.firstName} {data?.lastName}
                 </Dropdown.Button>
             </div>
         </div>

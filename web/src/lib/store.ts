@@ -1,20 +1,22 @@
 
 
-import { combineReducers, configureStore, Middleware, MiddlewareAPI, isRejected } from '@reduxjs/toolkit'
+import { configureStore, Middleware, MiddlewareAPI, isRejected } from '@reduxjs/toolkit'
 import { createWrapper } from 'next-redux-wrapper'
 import { login } from '../services/login'
 import { students } from '../services/students'
 import { teachers } from '../services/teachers'
-
-const rootReducer = combineReducers({
-  [login.reducerPath]: login.reducer,
-  [students.reducerPath]: students.reducer,
-  [teachers.reducerPath]: teachers.reducer,
-})
+import { users } from '@/services/users'
+import usersSlice from '../slices/users'
 
 export const makeStore = (context?: any) => {
   return configureStore({
-    reducer: rootReducer,
+    reducer: {
+      getUsersSlice: usersSlice,
+      [login.reducerPath]: login.reducer,
+      [users.reducerPath]: users.reducer,
+      [students.reducerPath]: students.reducer,
+      [teachers.reducerPath]: teachers.reducer,
+    },
     middleware: (getDefaultMiddleware) =>
       // adding the api middleware enables caching, invalidation, polling and other features of `rtk-query`
       getDefaultMiddleware({
@@ -25,6 +27,7 @@ export const makeStore = (context?: any) => {
         },
       }).concat([
         login.middleware,
+        users.middleware,
         students.middleware,
         teachers.middleware,
         rtkQueryErrorLogger

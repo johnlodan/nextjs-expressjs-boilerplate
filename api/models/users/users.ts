@@ -6,6 +6,7 @@ export interface IUsers extends Document {
   firstName?: string;
   email?: string;
   password?: string;
+  role: string;
   status?: number;
   updatedAt?: Date;
   createdAt?: Date;
@@ -29,6 +30,9 @@ const UsersSchema: Schema = new mongoose.Schema<IUsers>({
   password: {
     type: String,
   },
+  role: {
+    type: String,
+  },
   status: {
     type: Number,
     default: 1
@@ -39,13 +43,6 @@ const UsersSchema: Schema = new mongoose.Schema<IUsers>({
   }
 })
 
-
-UsersSchema.set('toObject', {
-  transform: (_doc: any, ret: any) => {
-    delete ret.password;
-    return ret;
-  }
-});
 
 const UsersModel = mongoose.model<IUsers, AggregatePaginateModel<IUsers>>('users', UsersSchema);
 export default UsersModel
